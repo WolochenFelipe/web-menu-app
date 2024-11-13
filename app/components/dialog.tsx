@@ -1,36 +1,44 @@
 "use client"
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 
 
 interface DialogProps {
     children: React.ReactNode,
-    trigger: React.ReactNode,
-    open?: boolean
+    trigger?: React.ReactNode,
+    open: boolean
+    setOpen: (open: boolean) => void
 }
-export function Dialog({ children, trigger, open }: DialogProps) {
-    const [isModalOpen, setIsModalOpen] = useState<boolean>(open || false);
+export function Dialog({ children, trigger, open, setOpen }: DialogProps) {
+    //const [isModalOpen, setIsModalOpen] = useState<boolean>(open || false);
 
-    const openModal = () => setIsModalOpen(true);
-    const closeModal = () => setIsModalOpen(false);
+    // useEffect(() => {
+    //     if (open != undefined)
+    //         setIsModalOpen(open)
+    // }, [open])
+
+    //const openModal = () => setIsModalOpen(true);
+    //const closeModal = () => setIsModalOpen(false);
 
 
     return (
         <>
-            <div
-                onClick={openModal}
-            >
-                {trigger}
-            </div>
+            {trigger && (
+                <div
+                    onClick={() => setOpen(true)}
+                >
+                    {trigger}
+                </div>
+            )}
 
-            {isModalOpen && createPortal
+            {open && createPortal
                 (
                     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-                        <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md relative">
+                        <div className="bg-white p-6 rounded-lg shadow-lg min-w-md max-w-lg relative">
                             <button
                                 className="absolute top-2 right-2 text-gray-600 hover:text-gray-800"
-                                onClick={closeModal}
+                                onClick={() => setOpen(false)}
                             >
                                 &times;
                             </button>

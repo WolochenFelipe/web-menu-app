@@ -39,7 +39,7 @@ export default function CreateMenu() {
     }
 
     return (
-        <div className="p-8 bg-gray-700 rounded-lg shadow-lg">
+        <div className="p-8 bg-gray-700 rounded-lg shadow-lg h-full">
             <h2 className="text-2xl font-semibold mb-4">Criar Menu</h2>
             <form onSubmit={handleSubmit(handleSubmitMenu)} className="space-y-4">
                 <div>

@@ -1,8 +1,7 @@
 import { notFound } from 'next/navigation'
 import prisma from '@/lib/prisma'
-import { Dialog } from '../components/dialog'
-import CreateCategory from '../components/create-category'
-import CreateProduct from '../components/create-product'
+import CategoryBox from '../components/category-box'
+import ProductBox from '../components/product-box'
 
 export default async function SubdomainPage({ params }: { params: { subdomain: string } }) {
   const { subdomain } = params
@@ -21,22 +20,36 @@ export default async function SubdomainPage({ params }: { params: { subdomain: s
 
 
     return (
-      <div className="relative">
-        <div className="flex h-screen bg-gray-500">
-          <aside className="w-1/4 bg-gray-700 p-6 text-white">
-            <div className="text-xl font-bold mb-8">{tenant.name}</div>
-            <nav className="space-y-4">
-              <CreateCategoryDialog tenantId={tenant.subdomain} />
-              <CreateProductDialog />
-            </nav>
-          </aside>
-          <main className="flex-1 p-8">
-            <header className="text-2xl font-bold mb-8">Gestão de Catálogo</header>
-            <section>
-              <h2 className="text-xl font-semibold mb-4">Categorias</h2>
-              <CategorySamples tenantId={tenant.subdomain} />
-            </section>
-          </main>
+      <div className="relative h-screen">
+        <div className="grid grid-cols-2 h-full bg-white">
+          <div className="flex">
+            <aside className="w-1/6 bg-gray-400 p-6 text-black">
+              <div className="text-xl font-bold mb-8">{subdomain}</div>
+            </aside>
+            <main className="w-full flex-1 p-8  text-black">
+              <header className="text-2xl font-bold mb-8 overflow-auto">Exibição do Catálogo</header>
+              <section>
+                <h2 className="text-xl font-semibold mb-4">Categorias</h2>
+              </section>
+              <CategoryBox tenant={subdomain} />
+              <section>
+                <h2 className="text-xl font-semibold mb-4">Produtos</h2>
+              </section>
+              <ProductBox tenant={subdomain} />
+
+            </main></div>
+          <div className="justify-items-end ">
+            <div className="grid bg-gray-400 h-full w-2/3 mr-0">
+              <div className="text-gray-900 font-medium text-center">
+                0 items no carrinho
+              </div>
+              <div className="flex self-center justify-center">
+                <button className="font-semibold bg-gray-700 w-1/3 p-4 text-white p-2 rounded">
+                  Fechar Carrinho
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     )
@@ -50,56 +63,4 @@ export default async function SubdomainPage({ params }: { params: { subdomain: s
       </div>
     )
   }
-}
-
-function CreateCategoryDialog({ tenantId }: { tenantId: string }) {
-  return (
-    <Dialog
-      trigger={
-        <button className="w-full text-left bg-gray-400 p-2 rounded">
-          Adicionar Categoria
-        </button>
-      }
-    >
-      <CreateCategory tenantId={tenantId} />
-    </Dialog>
-  )
-}
-
-function CreateProductDialog() {
-  return (
-    <>
-      <Dialog
-        trigger={
-          <button className="w-full text-left bg-gray-400 p-2 rounded">
-            Adicionar Produto
-          </button>
-        }>
-        <CreateProduct />
-      </Dialog>
-    </>
-  )
-}
-
-async function CategorySamples({ tenantId }: { tenantId: string }) {
-  const menufind = await prisma.menu.findUnique({
-    where: { subdomain: tenantId },
-  })
-  const categories = await prisma.category.findMany({
-    where: { menuId: menufind?.id },
-  })
-
-  return (
-    <div>
-      {categories.length > 0 ? (
-        <ul>
-          {categories.map((category) => (
-            <li key={category.id}>{category.name}</li>
-          ))}
-        </ul>
-      ) : (
-        <p>Nenhuma categoria encontrada.</p>
-      )}
-    </div>
-  )
 }

@@ -1,34 +1,31 @@
-
+// dashboard
 import CreateMenu from "../components/create-menu";
 import { Dialog } from "../components/dialog";
+import MenuBox from "../components/menu-box"
 
 
 export default async function Page() {
     return (
-        <div className="relative">
-            <div className="flex h-screen bg-gray-500">
-                <aside className="w-1/4 bg-gray-700 p-6 text-white">
-                    <div className="text-xl font-bold mb-8">Restaurante Bom</div>
-                    <nav className="space-y-4">
-                        <CreateMenuDialog />
-                        <button className="w-full text-left bg-gray-400 p-2 rounded">
-                            Remover Estabelecimento
-                        </button>
-                    </nav>
-                </aside>
-                <main className="flex-1 p-8">
-                    <header className="text-2xl font-bold mb-8">Gestão de Estabelecimentos</header>
-                    <section>
-                        <h2 className="text-xl font-semibold mb-4">Estabelecimentos</h2>
-                        <div className="grid grid-cols-1 gap-4">
-                            <div className="bg-white p-4 rounded-lg shadow-md text-center">
-                                <div className="h-16 w-16 mx-auto bg-gray-200 rounded-full mb-4"></div>
-                                <p className="font-medium">Nome Estabelecimento</p>
-                                <p className="text-gray-600">Estab</p>
-                            </div>
+        <div className="relative h-screen">
+            <div className=" h-screen bg-white ">
+                <div className="flex max-h-screen">
+                    <aside className="w-1/6 h-screen bg-gray-400 p-6 text-black">
+                        <div className="text-xl font-bold mb-8">Restaurante Bom</div>
+                        <nav className="space-y-4">
+                            <CreateMenuDialog />
+                        </nav>
+                    </aside>
+                    <main className="h-screen flex-1 p-8 text-black">
+                        <header className="text-2xl font-bold mb-8">Gestão do Catálogo</header>
+                        <section>
+                            <h2 className="text-xl font-semibold mb-4">Menus</h2>
+                        </section>
+                        <div className="overflow-y-auto h-2/3">
+                            <MenuBox />
                         </div>
-                    </section>
-                </main>
+
+                    </main>
+                </div>
             </div>
         </div>
     );
@@ -39,8 +36,8 @@ function CreateMenuDialog() {
         <>
             <Dialog
                 trigger={
-                    <button className="w-full text-left bg-gray-400 p-2 rounded">
-                        Adicionar Estabelecimento
+                    <button className="w-full text-center bg-white p-2 rounded">
+                        Gerenciar Menus
                     </button>
                 }>
                 <CreateMenu />

@@ -1,0 +1,6 @@
+{
+  "/dashboard/[subdomain]/page": "app/dashboard/[subdomain]/page.js",
+  "/[subdomain]/page": "app/[subdomain]/page.js",
+  "/api/tenant/route": "app/api/tenant/route.js",
+  "/api/category/get-category/route": "app/api/category/get-category/route.js"
+}
