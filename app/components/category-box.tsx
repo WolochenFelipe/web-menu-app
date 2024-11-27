@@ -7,6 +7,7 @@ import ShowCategory from "../components/category/show-category";
 type Category = {
     id: string;
     name: string;
+    icon: string;
     description: string;
 };
 
@@ -41,33 +42,57 @@ export default function CategoryBox({ tenant }: { tenant: string }) {
     }, [tenant]);
 
     return (
-        <div className="grid grid-cols-4 gap-4">
-            {categories.length === 0 ? (
-                <p>No categories available</p>
-            ) : (
-                <>
-                    {selectedCategory && (
-                        <Dialog
-                            open={open}
-                            setOpen={setOpen}
-                        >
-                            <ShowCategory tenantId={tenant} categoryId={selectedCategory.id} />
-                        </Dialog>
-                    )}
-                    {categories.map((category) => (
-                        <div
-                            onClick={() => { setSelectedCategory(category); setOpen(true) }}
-                            className="bg-gray-300 p-4 rounded-lg shadow-md text-center cursor-pointer"
-                            key={category.id}
-                        >
-                            <div className="h-16 w-16 mx-auto bg-white rounded-full mb-4"></div>
-                            <p className="font-medium">{category.description}</p>
-                            <p className="text-gray-600">{category.name}</p>
-                        </div>
-                    ))}
-                </>
-            )}
-        </div>
+        <>
+            <div className="relative overflow-x-auto ml-64">
+                <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                    <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                        <tr>
+                            <th scope="col" className="px-6 py-3">
+                                Ícone
+                            </th>
+                            <th scope="col" className="px-6 py-3">
+                                Nome da Categoria
+                            </th>
+                            <th scope="col" className="px-6 py-3">
+                                Descrição
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {categories.length === 0 ? (
+                            <div>Não há categorias ainda</div>
+                        ) : (
+                            <>
+                                {selectedCategory && (
+                                    <Dialog
+                                        open={open}
+                                        setOpen={setOpen}
+                                    >
+                                        <ShowCategory tenantId={tenant} categoryId={selectedCategory.id} />
+                                    </Dialog>
+                                )}
+                                {categories.map((category) => (
+                                    <tr onClick={() => { setSelectedCategory(category); setOpen(true) }} key={category.id} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+
+                                        <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                            {category.icon &&
+                                                <img className="h-8 w-8 rounded-full" src={category.icon} alt="image" />
+                                            }
+                                        </th>
+                                        <td className="px-6 py-4">
+                                            {category.name}
+                                        </td>
+                                        <td className="px-6 py-4">
+                                            {category.description}
+                                        </td>
+                                    </tr>
+                                ))}
+                            </>
+                        )}
+                    </tbody>
+                </table>
+            </div>
+        </>
     );
 }
 

@@ -10,12 +10,12 @@ export async function getTenantBySubdomain(subdomain: string) {
     return response.json()
   } else {
     // En entornos no-Edge, usamos Prisma normalmente
-    return prisma.tenant.findUnique({
+    return prisma.menu.findUnique({
       where: { subdomain },
     })
   }
 }
 
 export async function getAllTenants() {
-  return prisma.tenant.findMany()
+  return prisma.menu.findMany()
 }

@@ -45,7 +45,7 @@ export default function ProductCategories({ tenant, register }: ProductCategorie
         <div>
             <select
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2"
-                {...register("Categoria", { required: "Categoria é obrigatória" })}
+                {...register("categoria", { required: "Categoria é obrigatória" })}
             >
                 <option value="">Selecione uma categoria</option>
                 {categories.map((category) => (

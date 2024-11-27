@@ -13,8 +13,7 @@ export async function GET(request: NextRequest) {
 
   try {
     const tenant = await prisma.menu.findUnique({
-      where: { subdomain },
-      select: { id: true, name: true, subdomain: true }
+      where: { subdomain }
     })
 
     console.log('API: Tenant found:', tenant)

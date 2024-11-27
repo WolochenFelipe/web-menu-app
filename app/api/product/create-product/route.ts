@@ -1,10 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server'
 import prisma from '@/lib/prisma'
+import { type productSchema } from '@/app/components/product/create-product'
 
 export async function POST(request: NextRequest) {
     try {
-        const { name, description, notices, nutricionalTable, menu, category } = await request.json()
-
+        const formData = await request.formData()
+        const { name, description, notices, categoria, nutricionalTable, image, menu } = Object.fromEntries(formData) as productSchema & { menu: string }
+        console.log("AIAIAI")
         if (!menu) {
             return NextResponse.json({ error: 'Menu is required' }, { status: 400 })
         }
@@ -17,8 +19,8 @@ export async function POST(request: NextRequest) {
             return NextResponse.json({ error: 'Valid menu is required' }, { status: 400 })
         }
 
-        const computedCategory = await prisma.category.findFirst({
-            where: { id: category, menuId: computedMenu.id },
+        const computedCategory = await prisma.category.findUnique({
+            where: { id: categoria, menuId: computedMenu.id },
         })
 
         if (!name || !description) {
@@ -28,6 +30,29 @@ export async function POST(request: NextRequest) {
         if (!computedCategory) {
             return NextResponse.json({ error: 'Category not found' }, { status: 400 })
         }
+        if (!image) {
+            return NextResponse.json({ error: 'Image is required' }, { status: 400 })
+        }
+        const uniqueFileName = `${crypto.randomUUID()}-${image.name}`;
+
+        const response = await fetch(`${process.env.KINDE_SITE_URL}/api/presigned-url`, {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ key: uniqueFileName })
+        })
+
+        const { signedUrl } = await response.json()
+
+        const imageUploadRequest = await fetch(signedUrl, {
+            method: 'PUT',
+            headers: {
+                "Content-Type": image.type,
+                "Accepted": "application/json"
+            },
+            body: image
+        })
 
         const newProduct = await prisma.product.create({
             data: {
@@ -35,6 +60,7 @@ export async function POST(request: NextRequest) {
                 description,
                 notices,
                 nutricionalTable,
+                image: `${process.env.CLOUDFLARE_BUCKET_URL}/${uniqueFileName}`,
                 categoryId: computedCategory.id,
                 menuId: computedMenu.id,
             },

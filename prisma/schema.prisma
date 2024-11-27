@@ -28,6 +28,7 @@ model Menu {
   id         String     @id @default(cuid())
   subdomain  String     @unique
   name       String
+  image      String
   categories Category[]
   userId     String
   User       User       @relation(fields: [userId], references: [id])
@@ -57,6 +58,7 @@ model Product {
   name             String
   description      String
   notices          String
+  image            String
   nutricionalTable String
   tags             TagProduct[]
 
@@ -87,10 +89,11 @@ model TagProduct {
 }
 
 model Preference {
-  id             Int     @id @default(autoincrement())
+  id             String  @id @default(cuid())
   menuId         String
   userId         String?
   backgroundMode String
+  image          String
   accentColor    String
 
   Menu Menu  @relation(fields: [menuId], references: [id])

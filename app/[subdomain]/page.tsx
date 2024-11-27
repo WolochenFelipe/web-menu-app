@@ -44,7 +44,7 @@ export default async function SubdomainPage({ params }: { params: { subdomain: s
                 0 items no carrinho
               </div>
               <div className="flex self-center justify-center">
-                <button className="font-semibold bg-gray-700 w-1/3 p-4 text-white p-2 rounded">
+                <button className="font-semibold bg-gray-700 w-1/3 p-4 text-white rounded">
                   Fechar Carrinho
                 </button>
               </div>
@@ -64,3 +64,4 @@ export default async function SubdomainPage({ params }: { params: { subdomain: s
     )
   }
 }
+

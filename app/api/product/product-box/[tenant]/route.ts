@@ -28,10 +28,10 @@ export async function GET(request: Request, { params }: { params: { tenant: stri
             return NextResponse.json({ categories });
         }
 
-        console.log(`No categories found for tenant ${tenant}`);
-        return NextResponse.json({ error: 'No categories found' }, { status: 404 });
+        console.log(`No products found for tenant ${tenant}`);
+        return NextResponse.json({ error: 'No products found' }, { status: 404 });
     } catch (error) {
-        console.error('Error fetching categories:', error);
+        console.error('Error fetching products:', error);
         return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
     }
 }
