@@ -59,6 +59,7 @@ model Product {
   description      String
   notices          String
   image            String
+  price            Int
   nutricionalTable String
   tags             TagProduct[]
 
