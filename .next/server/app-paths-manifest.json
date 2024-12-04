@@ -1,4 +1,26 @@
 {
+  "/_not-found/page": "app/_not-found/page.js",
+  "/api/category/category-box/[tenant]/route": "app/api/category/category-box/[tenant]/route.js",
   "/[subdomain]/page": "app/[subdomain]/page.js",
-  "/api/tenant/route": "app/api/tenant/route.js"
+  "/api/auth/success/route": "app/api/auth/success/route.js",
+  "/api/category/create-category/route": "app/api/category/create-category/route.js",
+  "/api/category/delete-category/route": "app/api/category/delete-category/route.js",
+  "/api/category/get-category/route": "app/api/category/get-category/route.js",
+  "/api/category/update-category/route": "app/api/category/update-category/route.js",
+  "/api/create-tenant/route": "app/api/create-tenant/route.js",
+  "/api/menu-box/route": "app/api/menu-box/route.js",
+  "/api/delete-tenant/route": "app/api/delete-tenant/route.js",
+  "/api/presigned-url/route": "app/api/presigned-url/route.js",
+  "/api/product/create-product/route": "app/api/product/create-product/route.js",
+  "/api/product/delete-product/route": "app/api/product/delete-product/route.js",
+  "/api/product/product-box/[tenant]/route": "app/api/product/product-box/[tenant]/route.js",
+  "/api/product/get-product/route": "app/api/product/get-product/route.js",
+  "/api/product/update-product/route": "app/api/product/update-product/route.js",
+  "/api/tenant/route": "app/api/tenant/route.js",
+  "/dashboard/[subdomain]/page": "app/dashboard/[subdomain]/page.js",
+  "/api/update-tenant/route": "app/api/update-tenant/route.js",
+  "/dashboard/page": "app/dashboard/page.js",
+  "/page": "app/page.js",
+  "/favicon.ico/route": "app/favicon.ico/route.js",
+  "/api/auth/[kindeAuth]/route": "app/api/auth/[kindeAuth]/route.js"
 }
