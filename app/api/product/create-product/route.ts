@@ -5,7 +5,7 @@ import { type productSchema } from '@/app/components/product/create-product'
 export async function POST(request: NextRequest) {
     try {
         const formData = await request.formData()
-        const { name, description, notices, categoria, nutricionalTable, image, menu } = Object.fromEntries(formData) as productSchema & { menu: string }
+        const { name, description, price, notices, categoria, nutricionalTable, image, menu } = Object.fromEntries(formData) as productSchema & { menu: string }
         console.log("AIAIAI")
         if (!menu) {
             return NextResponse.json({ error: 'Menu is required' }, { status: 400 })
@@ -58,6 +58,7 @@ export async function POST(request: NextRequest) {
             data: {
                 name,
                 description,
+                price,
                 notices,
                 nutricionalTable,
                 image: `${process.env.CLOUDFLARE_BUCKET_URL}/${uniqueFileName}`,

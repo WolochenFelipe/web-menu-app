@@ -1,8 +1,4 @@
 {
-  "/page": "app/page.js",
-  "/api/auth/success/route": "app/api/auth/success/route.js",
-  "/api/auth/[kindeAuth]/route": "app/api/auth/[kindeAuth]/route.js",
-  "/favicon.ico/route": "app/favicon.ico/route.js",
-  "/dashboard/page": "app/dashboard/page.js",
-  "/api/menu-box/route": "app/api/menu-box/route.js"
+  "/[subdomain]/page": "app/[subdomain]/page.js",
+  "/api/tenant/route": "app/api/tenant/route.js"
 }

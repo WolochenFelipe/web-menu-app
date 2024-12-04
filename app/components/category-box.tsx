@@ -60,7 +60,7 @@ export default function CategoryBox({ tenant }: { tenant: string }) {
                     </thead>
                     <tbody>
                         {categories.length === 0 ? (
-                            <div>Não há categorias ainda</div>
+                            <tr><th>Não há categorias ainda</th></tr>
                         ) : (
                             <>
                                 {selectedCategory && (
@@ -76,6 +76,7 @@ export default function CategoryBox({ tenant }: { tenant: string }) {
 
                                         <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                             {category.icon &&
+                                                // eslint-disable-next-line @next/next/no-img-element
                                                 <img className="h-8 w-8 rounded-full" src={category.icon} alt="image" />
                                             }
                                         </th>

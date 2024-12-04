@@ -12,6 +12,7 @@ import { zfd } from 'zod-form-data';
 const productSchema = z.object({
     name: z.string().nonempty("Nome é Obrigatório").min(3, "Mínimo de 3 Letras para o Nome"),
     description: z.string().nonempty("Descrição é Obrigatória").min(3, "Mínimo de 3 Letras para Descrição"),
+    price: z.string().nonempty("Preço é Obrigatório"),
     notices: z.string().nonempty("Alerta é Obrigatório"),
     categoria: z.string().nonempty("Categoria é Obrigatório"),
     nutricionalTable: z.string().nonempty("Tabela Nutricional é Obrigatória"),
@@ -107,6 +108,23 @@ export default function CreateProductDialog({ tenant }: { tenant: string }) {
                             {errors.description && <span className='text-red-500'>{errors.description.message}</span>}
                         </div>
                         <div className='flex flex-col gap-1'>
+                            <label className=" text-gray-300">Preço:</label>
+                            <div className="relative w-full">
+                                <div className="absolute inset-y-0 start-0 top-0 flex items-center ps-3.5 pointer-events-none">
+                                    <svg className="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 2a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1M2 5h12a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Zm8 5a2 2 0 1 1-4 0 2 2 0 0 1 4 0Z" />
+                                    </svg>
+                                </div>
+                                <input
+                                    type="number" step="0.01"
+                                    className="block p-2 w-full z-20 ps-10 border border-gray-300 rounded text-gray-700"
+                                    placeholder="Inserir Preço" {...register('price')}
+                                />
+
+                            </div>
+                            {errors.price && <span className='text-red-500'>{errors.price.message}</span>}
+                        </div>
+                        <div className='flex flex-col gap-1'>
                             <label className="text-gray-300">Categoria:</label>
                             <ProductsCategories tenant={tenant} register={register} />
                         </div>
@@ -137,7 +155,7 @@ export default function CreateProductDialog({ tenant }: { tenant: string }) {
                             />
                             {errors.image && <span className='mt-2 text-red-500'>{errors.image.message}</span>}
                         </div>
-                        <span onClick={() => console.log(getValues())}>{JSON.stringify(getValues())}</span>
+                        {/* <span onClick={() => console.log(getValues())}>{JSON.stringify(getValues())}</span> */}
                     </div>
 
                     <button type="submit" className="w-full bg-gray-500 text-white p-2 rounded">

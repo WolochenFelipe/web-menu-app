@@ -21,34 +21,28 @@ export default async function SubdomainPage({ params }: { params: { subdomain: s
 
     return (
       <div className="relative h-screen">
-        <div className="grid grid-cols-2 h-full bg-white">
-          <div className="flex">
-            <aside className="w-1/6 bg-gray-400 p-6 text-black">
-              <div className="text-xl font-bold mb-8">{subdomain}</div>
+        <div className=" h-screen bg-white ">
+          <div className="flex max-h-screen">
+            <aside id="default-sidebar" className="fixed left-0 top-0 z-40 h-screen w-64 -translate-x-full transition-transform sm:translate-x-0" aria-label="Sidebar">
+              <div className="h-full overflow-y-auto bg-gray-50 px-3 py-4 dark:bg-gray-800">
+                {subdomain}
+              </div>
             </aside>
-            <main className="w-full flex-1 p-8  text-black">
-              <header className="text-2xl font-bold mb-8 overflow-auto">Exibição do Catálogo</header>
+            <main className="h-screen flex-1 p-8 text-black">
+              <header className="text-2xl font-bold mb-8">Catálogo</header>
               <section>
                 <h2 className="text-xl font-semibold mb-4">Categorias</h2>
               </section>
-              <CategoryBox tenant={subdomain} />
+              <div className="overflow-y-auto h-2/3">
+                <CategoryBox tenant={subdomain} />
+              </div>
               <section>
-                <h2 className="text-xl font-semibold mb-4">Produtos</h2>
+                <h2 className="text-xl font-semibold mb-4">Categorias</h2>
               </section>
-              <ProductBox tenant={subdomain} />
-
-            </main></div>
-          <div className="justify-items-end ">
-            <div className="grid bg-gray-400 h-full w-2/3 mr-0">
-              <div className="text-gray-900 font-medium text-center">
-                0 items no carrinho
+              <div>
+                <ProductBox tenant={subdomain} />
               </div>
-              <div className="flex self-center justify-center">
-                <button className="font-semibold bg-gray-700 w-1/3 p-4 text-white rounded">
-                  Fechar Carrinho
-                </button>
-              </div>
-            </div>
+            </main>
           </div>
         </div>
       </div>

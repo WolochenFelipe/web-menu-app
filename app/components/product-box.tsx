@@ -11,7 +11,8 @@ type Product = {
     category: string;
     notices: string;
     nutricionalTable: string;
-    image: string
+    image: string;
+    price: string
 };
 
 export default function ProductBox({ tenant }: { tenant: string }) {
@@ -58,6 +59,9 @@ export default function ProductBox({ tenant }: { tenant: string }) {
                             <th scope="col" className="px-6 py-3">
                                 Descrição
                             </th>
+                            <th scope='col' className='px-6 py-3'>
+                                Preço
+                            </th>
                             <th scope="col" className="px-6 py-3">
                                 Categoria
                             </th>
@@ -71,7 +75,7 @@ export default function ProductBox({ tenant }: { tenant: string }) {
                     </thead>
                     <tbody>
                         {categories.length === 0 ? (
-                            <div>Não há produtos ainda</div>
+                            <tr><th>Não há produtos ainda</th></tr>
                         ) : (
                             <>
                                 {selectedProductId && (
@@ -88,6 +92,7 @@ export default function ProductBox({ tenant }: { tenant: string }) {
 
                                         <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                             {product.image &&
+                                                // eslint-disable-next-line @next/next/no-img-element
                                                 <img className="h-8 w-8 rounded-full" src={product.image} alt="image" />
                                             }
                                         </th>
@@ -96,6 +101,9 @@ export default function ProductBox({ tenant }: { tenant: string }) {
                                         </td>
                                         <td className="px-6 py-4">
                                             {product.description}
+                                        </td>
+                                        <td className="px-6 py-4">
+                                            {product.price}
                                         </td>
                                         <td className="px-6 py-4">
                                             {product.category}
