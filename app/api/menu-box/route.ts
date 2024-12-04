@@ -56,13 +56,7 @@ export async function GET() {
 
     // Se o usuário não existir, você pode criar ele (opcional)
     if (!userRec) {
-      userRec = await prisma.user.create({
-        data: {
-          kindeId: kindeUser.id,
-          name: `${kindeUser.given_name} ${kindeUser.family_name}`,
-          email: kindeUser.email ?? '',
-        },
-      });
+      return NextResponse.json({ error: 'usuario precisa estar autenticado' }, { status: 400 })
     }
 
     // Busca os menus associados ao usuário

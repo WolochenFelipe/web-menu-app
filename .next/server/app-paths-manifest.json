@@ -1,12 +1,1 @@
-{
-  "/api/auth/[kindeAuth]/route": "app/api/auth/[kindeAuth]/route.js",
-  "/page": "app/page.js",
-  "/dashboard/page": "app/dashboard/page.js",
-  "/api/create-tenant/route": "app/api/create-tenant/route.js",
-  "/api/menu-box/route": "app/api/menu-box/route.js",
-  "/api/presigned-url/route": "app/api/presigned-url/route.js",
-  "/dashboard/[subdomain]/page": "app/dashboard/[subdomain]/page.js",
-  "/favicon.ico/route": "app/favicon.ico/route.js",
-  "/api/product/product-box/[tenant]/route": "app/api/product/product-box/[tenant]/route.js",
-  "/api/category/category-box/[tenant]/route": "app/api/category/category-box/[tenant]/route.js"
-}
+{}
