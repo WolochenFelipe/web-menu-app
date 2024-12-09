@@ -44,38 +44,118 @@ export default function ProductBox({ tenant }: { tenant: string }) {
 
         fetchCategories();
     }, [tenant]);
+    // return (
+    //     <>
+    //         <div className="relative overflow-x-auto ml-64">
+    //             <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+    //                 <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+    //                     <tr>
+    //                         <th scope="col" className="px-6 py-3">
+    //                             Imagem
+    //                         </th>
+    //                         <th scope="col" className="px-6 py-3">
+    //                             Nome do Produto
+    //                         </th>
+    //                         <th scope="col" className="px-6 py-3">
+    //                             Descrição
+    //                         </th>
+    //                         <th scope='col' className='px-6 py-3'>
+    //                             Preço
+    //                         </th>
+    //                         <th scope="col" className="px-6 py-3">
+    //                             Categoria
+    //                         </th>
+    //                         <th scope="col" className="px-6 py-3">
+    //                             Alertas
+    //                         </th>
+    //                         <th scope="col" className="px-6 py-3">
+    //                             Tabela Nutricional
+    //                         </th>
+    //                     </tr>
+    //                 </thead>
+    //                 <tbody>
+    //                     {categories.length === 0 ? (
+    //                         <tr><th>Não há produtos ainda</th></tr>
+    //                     ) : (
+    //                         <>
+    //                             {selectedProductId && (
+    //                                 <Dialog
+    //                                     open={open}
+    //                                     setOpen={setOpen}
+    //                                 >
+    //                                     <ShowProduct tenantId={tenant} productId={selectedProductId.id} />
+    //                                 </Dialog>
+    //                             )}
+    //                             {categories.map((product) => (
+    //                                 <tr onClick={() => { setSelectedProductId(product); setOpen(true) }}
+    //                                     key={product.id} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+
+    //                                     <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+    //                                         {product.image &&
+    //                                             // eslint-disable-next-line @next/next/no-img-element
+    //                                             <img className="h-8 w-8 rounded-full" src={product.image} alt="image" />
+    //                                         }
+    //                                     </th>
+    //                                     <td className="px-6 py-4">
+    //                                         {product.name}
+    //                                     </td>
+    //                                     <td className="px-6 py-4">
+    //                                         {product.description}
+    //                                     </td>
+    //                                     <td className="px-6 py-4">
+    //                                         {product.price}
+    //                                     </td>
+    //                                     <td className="px-6 py-4">
+    //                                         {product.category}
+    //                                     </td>
+    //                                     <td className="px-6 py-4">
+    //                                         {product.notices}
+    //                                     </td>
+    //                                     <td className="px-6 py-4">
+    //                                         {product.nutricionalTable}
+    //                                     </td>
+    //                                 </tr>
+    //                             ))}
+    //                         </>
+    //                     )}
+    //                 </tbody>
+    //             </table>
+    //         </div>
+    //     </>
+    // );
+
     return (
         <>
             <div className="relative overflow-x-auto ml-64">
-                <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                    <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                        <tr>
-                            <th scope="col" className="px-6 py-3">
-                                Imagem
-                            </th>
-                            <th scope="col" className="px-6 py-3">
-                                Nome do Produto
-                            </th>
-                            <th scope="col" className="px-6 py-3">
-                                Descrição
-                            </th>
-                            <th scope='col' className='px-6 py-3'>
-                                Preço
-                            </th>
-                            <th scope="col" className="px-6 py-3">
-                                Categoria
-                            </th>
-                            <th scope="col" className="px-6 py-3">
-                                Alertas
-                            </th>
-                            <th scope="col" className="px-6 py-3">
-                                Tabela Nutricional
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
+                <div className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                    <div className="grid grid-cols-7 text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                        <div className="px-6 py-3">
+                            Imagem
+                        </div>
+                        <div className="px-6 py-3">
+                            Nome do Produto
+                        </div>
+                        <div className="px-6 py-3">
+                            Descrição
+                        </div>
+                        <div className='px-6 py-3'>
+                            Preço
+                        </div>
+                        <div className="px-6 py-3">
+                            Categoria
+                        </div>
+                        <div className="px-6 py-3">
+                            Alertas
+                        </div>
+                        <div className="px-6 py-3">
+                            Tabela Nutricional
+                        </div>
+                    </div>
+                    <div className='max-h-80 overflow-y-scroll'>
                         {categories.length === 0 ? (
-                            <tr><th>Não há produtos ainda</th></tr>
+                            <div className="grid grid-cols-3">
+                                <div className="px-6 py-4">Não há Produtos ainda</div>
+                            </div>
                         ) : (
                             <>
                                 {selectedProductId && (
@@ -87,39 +167,39 @@ export default function ProductBox({ tenant }: { tenant: string }) {
                                     </Dialog>
                                 )}
                                 {categories.map((product) => (
-                                    <tr onClick={() => { setSelectedProductId(product); setOpen(true) }}
-                                        key={product.id} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                                    <div onClick={() => { setSelectedProductId(product); setOpen(true) }}
+                                        key={product.id} className="grid grid-cols-7 bg-white border-b dark:bg-gray-800 dark:border-gray-700 cursor-pointer">
 
-                                        <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                        <div className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                             {product.image &&
                                                 // eslint-disable-next-line @next/next/no-img-element
                                                 <img className="h-8 w-8 rounded-full" src={product.image} alt="image" />
                                             }
-                                        </th>
-                                        <td className="px-6 py-4">
+                                        </div>
+                                        <div className="px-6 py-4">
                                             {product.name}
-                                        </td>
-                                        <td className="px-6 py-4">
+                                        </div>
+                                        <div className="px-6 py-4">
                                             {product.description}
-                                        </td>
-                                        <td className="px-6 py-4">
+                                        </div>
+                                        <div className="px-6 py-4">
                                             {product.price}
-                                        </td>
-                                        <td className="px-6 py-4">
+                                        </div>
+                                        <div className="px-6 py-4">
                                             {product.category}
-                                        </td>
-                                        <td className="px-6 py-4">
+                                        </div>
+                                        <div className="px-6 py-4">
                                             {product.notices}
-                                        </td>
-                                        <td className="px-6 py-4">
+                                        </div>
+                                        <div className="px-6 py-4">
                                             {product.nutricionalTable}
-                                        </td>
-                                    </tr>
+                                        </div>
+                                    </div>
                                 ))}
                             </>
                         )}
-                    </tbody>
-                </table>
+                    </div>
+                </div>
             </div>
         </>
     );

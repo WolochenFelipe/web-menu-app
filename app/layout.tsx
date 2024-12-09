@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import { SpeedInsights } from '@vercel/speed-insights/next';
 import "./globals.css";
 import { AuthProvider } from "./components/providers/auth-provider";
 
@@ -16,11 +17,12 @@ export default function RootLayout({
 }>) {
   return (
     <AuthProvider>
-    <html lang="en">
-      <body>
-        {children}
-      </body>
-    </html>
+      <html lang="en">
+        <body>
+          {children}
+        </body>
+        <SpeedInsights />
+      </html>
     </AuthProvider >
   );
 }

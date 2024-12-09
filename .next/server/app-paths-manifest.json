@@ -1,1 +1,9 @@
-{}
+{
+  "/page": "app/page.js",
+  "/dashboard/page": "app/dashboard/page.js",
+  "/dashboard/[subdomain]/page": "app/dashboard/[subdomain]/page.js",
+  "/favicon.ico/route": "app/favicon.ico/route.js",
+  "/api/product/product-box/[tenant]/route": "app/api/product/product-box/[tenant]/route.js",
+  "/api/auth/[kindeAuth]/route": "app/api/auth/[kindeAuth]/route.js",
+  "/api/category/category-box/[tenant]/route": "app/api/category/category-box/[tenant]/route.js"
+}
